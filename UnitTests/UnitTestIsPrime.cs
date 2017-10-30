@@ -1,6 +1,6 @@
-﻿using System;
-using math_cs;
+﻿using math_cs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace UnitTests
 {
@@ -17,7 +17,7 @@ namespace UnitTests
             => ticks * 1000 / TimeSpan.TicksPerMillisecond;
 
         [TestMethod]
-        public void TestNonPositiveNumbers()
+        public void PrimeNonPositiveNumbers()
         {
             void Test(int n)
                 => Assert.IsFalse(IsPrime(n), $"{n} IsPrime; only positive numbers are prime");
@@ -36,7 +36,7 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void TestBaseCases()
+        public void PrimeBaseCases()
         {
             Test(true, 2);
             Test(true, 3);
@@ -49,7 +49,7 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void TestBoundaryCases()
+        public void PrimeBoundaryCases()
         {
             Test(false, 255);
             Test(false, 256);
@@ -64,7 +64,7 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void TestRanges()
+        public void PrimeRanges()
         {
             void TestRange(int start, int end, int expectedCount)
             {
@@ -85,7 +85,7 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void TestPerformance()
+        public void PrimePerformance()
         {
             void TestSpeed(int n, bool expected)
             {
