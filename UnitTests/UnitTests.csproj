@@ -52,6 +52,7 @@
     <Compile Include="UnitTestFibonacci.cs" />
     <Compile Include="UnitTestIsPrime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTestPrimeFactors.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
