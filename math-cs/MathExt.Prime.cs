@@ -1,4 +1,7 @@
-﻿namespace math_cs
+﻿using System;
+using System.Collections.Generic;
+
+namespace math_cs
 { 
     /// <summary>
     /// Note: If and when C# supports class extension with static methods, that ought to be used
@@ -33,5 +36,51 @@
             }
             return true;
         }
+
+        public static IReadOnlyDictionary<int, int> GetPrimeFactors(int n)
+        {
+            if (n < 2)
+                throw new ArgumentOutOfRangeException(
+                    $"Should only be called with integers 2 or greater; called with {n}");
+
+            var remaining = n;
+
+            var result = new Dictionary<int, int>();
+            while (remaining > 1)
+            {
+                var factor = (int)SmallestPrimeFactor(remaining);
+                if (result.ContainsKey(factor))
+                    result[factor]++;
+                else
+                    result[factor] = 1;
+                remaining /= factor;
+            }
+            return result;
+        }
+
+        private static long SmallestPrimeFactor(long n)
+        {
+            // TODO: refactor the common logic here and in IsPrime()
+            if (n < 2)
+                throw new ArgumentOutOfRangeException(
+                    $"Should only be called with integers 2 or greater; called with {n}");
+            if (n % 2 == 0)
+                return 2;
+            if (n % 3 == 0)
+                return 3;
+            long factor = 5;
+            while (factor * factor <= n)
+            {
+                if (n % factor == 0)
+                    return factor;
+                if (n % (factor + 2) == 0)
+                    return factor + 2;
+                factor += 6;
+            }
+            // n must be prime
+            return n;
+        }
+
     }
+
 }
